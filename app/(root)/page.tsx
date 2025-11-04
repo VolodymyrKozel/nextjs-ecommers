@@ -1,8 +1,16 @@
+import ProductList from "@/components/shared/header/product/product-list";
+import sampleData from "@/db/sample-data";
+
 const HomePage = () => {
+  console.log(sampleData);
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <>
+      <ProductList
+        data={sampleData.products}
+        title="Featured Products"
+        limit={4}
+      />
+    </>
   );
 };
 
