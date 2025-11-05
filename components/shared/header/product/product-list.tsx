@@ -1,3 +1,5 @@
+import ProductCard from "./product-card";
+
 const ProductList = ({
   data,
   title,
@@ -14,10 +16,7 @@ const ProductList = ({
       {limitedData.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {limitedData.map((product: any) => (
-            <div key={product.id} className="p-4 rounded-lg shadow">
-              <h3 className="font-semibold">{product.name}</h3>
-              <p className="text-sm text-gray-500">{product.description}</p>
-            </div>
+            <ProductCard key={product.slug} product={product} />
           ))}
         </div>
       ) : (
