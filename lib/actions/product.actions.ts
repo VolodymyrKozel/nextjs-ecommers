@@ -1,6 +1,5 @@
 "use server";
 import { PrismaClient } from "@/lib/generated/prisma/client";
-import { convertPrismaObjectToPlainObject } from "../utils";
 import { LATEST_PRODUCTS_LIMIT } from "../constants";
 
 const getLatestProducts = async () => {
@@ -11,7 +10,12 @@ const getLatestProducts = async () => {
       createdAt: "desc",
     },
   });
-  return convertPrismaObjectToPlainObject(products);
+  return products.map((product) => ({
+    ...product,
+    price: product.price.toString(),
+    rating: product.rating.toString(),
+    stock: product.stock ?? 0,
+  }));
 };
 
 const getProductBySlug = async (slug: string) => {
@@ -21,7 +25,12 @@ const getProductBySlug = async (slug: string) => {
       slug,
     },
   });
-  return convertPrismaObjectToPlainObject(product);
+  return {
+    ...product,
+    price: product?.price.toString(),
+    rating: product?.rating.toString(),
+    stock: product?.stock ?? 0,
+  };
 };
 
 export { getLatestProducts, getProductBySlug };
