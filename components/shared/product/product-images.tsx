@@ -4,17 +4,17 @@ import Image from "next/image";
 import { useState } from "react";
 
 type ProductImagesProps = {
-  images: string[];
-  name: string;
+  images?: string[];
+  name?: string;
 };
-const ProductImages = ({ images, name }: ProductImagesProps) => {
+const ProductImages = ({ images = [], name = "" }: ProductImagesProps) => {
   const [currentImage, setCurrentImage] = useState<number>(0);
   return (
     <div className="space-y-4">
       <Image
         className="min-h-[300px] object-cover object-center"
-        src={images[currentImage]}
-        alt={name}
+        src={images.length > 0 ? images[currentImage] : "/no-image.png"}
+        alt={name === "" ? "product image" : name}
         width={1000}
         height={1000}
         priority
