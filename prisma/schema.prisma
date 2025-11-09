@@ -5,9 +5,10 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider      = "prisma-client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
   // previewFeatures = ["driverAdapters"] 
-  output   = "../lib/generated/prisma"
+  output        = "../lib/generated/prisma"
 }
 
 datasource db {
